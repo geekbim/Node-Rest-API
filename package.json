@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/geekbim/Node-Rest-API#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "mysql2-promise": "^0.1.4"
   },
   "devDependencies": {},
   "description": ""
