@@ -3,12 +3,12 @@ const router = express.Router()
 const programmingLanguages = require('../services/programmingLanguages')
 
 // GET Programming Languages
-router.get('/', async (req, res,  next) => {
+router.get('/', async (req, res, next) => {
     try {
         res.json(await programmingLanguages.getMultiple(req.query.page))
-    } catch (error) {
-        console.error('Error while getting  programming languages ', error.message)
-        next(error)
+    } catch (err) {
+        console.err('Error while getting  programming languages ', err.message)
+        next(err)
     }
 })
 
@@ -16,9 +16,19 @@ router.get('/', async (req, res,  next) => {
 router.post('/', async (req, res, next) => {
     try {
         res.json(await programmingLanguages.create(req.body))
-    } catch (error) {
-        console.error(`Error while creating programming languages`, error.message)
-        next(error)
+    } catch (err) {
+        console.err(`Error while creating programming languages`, err.message)
+        next(err)
+    }
+})
+
+// PUT Programming Languages
+router.put('/:id', async (req, res, next) => {
+    try {
+        res.json(await programmingLanguages.update(req.params.id, req.body))
+    } catch (err) {
+        console.error('Error while updating programming language', err.message)
+        next(err)
     }
 })
 
