@@ -12,4 +12,14 @@ router.get('/', async (req, res,  next) => {
     }
 })
 
+// POST Programming Languages
+router.post('/', async (req, res, next) {
+    try {
+        res.json(await programmingLanguages.create(req.body))
+    } catch (error) {
+        console.error(`Error while creating programming languages`, error.message)
+        next(error)
+    }
+})
+
 module.exports = router
