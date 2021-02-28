@@ -43,7 +43,7 @@ async function create(programmingLanguage) {
 async function update(id, programmingLanguage) {
     const result = await db.query(
         `UPDATE programming_languages
-        SET name = ?, released_year = ?, githut_rank = ?
+        SET name = ?, released_year = ?, githut_rank = ?,
         pypl_rank = ?, tiobe_rank = ?
         WHERE id = ?`,
         [
@@ -60,6 +60,21 @@ async function update(id, programmingLanguage) {
     }
 
     return { message }
+}
+
+async function remove(id) {
+    const result = await db.query(
+        `DELETE FROM  programming_languages WHERE id = ?`,
+        [id]
+    )
+
+    let message = 'Error in deleting programming language'
+
+    if (result.affectedRows) {
+        message = 'Programming language delete successfully'
+    }
+
+    return (message)
 }
 
 module.exports = {
